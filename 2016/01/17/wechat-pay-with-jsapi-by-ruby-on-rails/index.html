@@ -6,19 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>微信公众号支付开发中的坑（Ruby on Rails示例） | EveDreamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！
-设置微信支付测试目录和添加测试微信号很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个目录，支付页面只有在该目">
+  <meta name="description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信公众号支付开发中的坑（Ruby on Rails示例）">
 <meta property="og:url" content="evedreamer.com/2016/01/17/wechat-pay-with-jsapi-by-ruby-on-rails/index.html">
 <meta property="og:site_name" content="EveDreamer">
-<meta property="og:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！
-设置微信支付测试目录和添加测试微信号很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个目录，支付页面只有在该目">
-<meta property="og:updated_time" content="2016-01-16T17:21:29.000Z">
+<meta property="og:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！">
+<meta property="og:updated_time" content="2016-01-16T17:23:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信公众号支付开发中的坑（Ruby on Rails示例）">
-<meta name="twitter:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！
-设置微信支付测试目录和添加测试微信号很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个目录，支付页面只有在该目">
+<meta name="twitter:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！">
   
     <link rel="alternative" href="/atom.xml" title="EveDreamer" type="application/atom+xml">
   
@@ -215,6 +212,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照<a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_1" target="_blank" rel="external">微信公众号支付文档</a>把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！</p>
+<a id="more"></a>
 <h3 id="u8BBE_u7F6E_u5FAE_u4FE1_u652F_u4ED8_u6D4B_u8BD5_u76EE_u5F55_u548C_u6DFB_u52A0_u6D4B_u8BD5_u5FAE_u4FE1_u53F7"><a href="#u8BBE_u7F6E_u5FAE_u4FE1_u652F_u4ED8_u6D4B_u8BD5_u76EE_u5F55_u548C_u6DFB_u52A0_u6D4B_u8BD5_u5FAE_u4FE1_u53F7" class="headerlink" title="设置微信支付测试目录和添加测试微信号"></a>设置微信支付测试目录和添加测试微信号</h3><p>很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个<strong>目录</strong>，支付页面只有在该目录下才能调用内置的H5支付接口进行支付，否则一律会报错。</p>
 <p>举个栗子🌰，我希望我的应用内的支付行为发生在地址为<code>http://example.com/orders/pay</code>页面或者<code>http://example.com/orders/pay/1</code>页面，那我就应该在测试目录设置测试授权目录为<code>http://example.com/orders/pay/</code>，注意别漏了后面那个<code>/</code>（目录嘛！），否则那就等着报错吧。</p>
 <p>设置好之后在测试白名单里添加你的<strong>微信号</strong>，这块儿没啥，别填成昵称什么的就行了，基本不会出错。</p>
