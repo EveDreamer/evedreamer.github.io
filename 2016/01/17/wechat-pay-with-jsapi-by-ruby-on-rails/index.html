@@ -4,17 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>EveDreamer</title>
+  <title>微信公众号支付开发中的坑（Ruby on Rails示例） | EveDreamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ruby，rails，开发，微信">
-<meta property="og:type" content="website">
-<meta property="og:title" content="EveDreamer">
-<meta property="og:url" content="evedreamer.com/index.html">
+  <meta name="description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！
+设置微信支付测试目录和添加测试微信号很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个目录，支付页面只有在该目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众号支付开发中的坑（Ruby on Rails示例）">
+<meta property="og:url" content="evedreamer.com/2016/01/17/wechat-pay-with-jsapi-by-ruby-on-rails/index.html">
 <meta property="og:site_name" content="EveDreamer">
-<meta property="og:description" content="ruby，rails，开发，微信">
+<meta property="og:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！
+设置微信支付测试目录和添加测试微信号很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个目录，支付页面只有在该目">
+<meta property="og:updated_time" content="2016-01-16T17:21:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EveDreamer">
-<meta name="twitter:description" content="ruby，rails，开发，微信">
+<meta name="twitter:title" content="微信公众号支付开发中的坑（Ruby on Rails示例）">
+<meta name="twitter:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！
+设置微信支付测试目录和添加测试微信号很多人在这儿就踩到坑了，其实要注意的地方就一点：是设置一个目录，支付页面只有在该目">
   
     <link rel="alternative" href="/atom.xml" title="EveDreamer" type="application/atom+xml">
   
@@ -173,9 +177,7 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
-  
-    <article id="post-wechat-pay-with-jsapi-by-ruby-on-rails" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-wechat-pay-with-jsapi-by-ruby-on-rails" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2016/01/17/wechat-pay-with-jsapi-by-ruby-on-rails/" class="article-date">
@@ -191,12 +193,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/17/wechat-pay-with-jsapi-by-ruby-on-rails/">微信公众号支付开发中的坑（Ruby on Rails示例）</a>
+    <h1 class="article-title" itemprop="name">
+      微信公众号支付开发中的坑（Ruby on Rails示例）
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信支付/">微信支付</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -250,20 +263,19 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信支付/">微信支付</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/10/beginning/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">开篇的流水账</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -274,65 +286,22 @@
 
 
 
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'evedreamer'; // required: replace example with your forum shortname
 
-  
-    <article id="post-beginning" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/10/beginning/" class="article-date">
-  	<time datetime="2016-01-10T09:07:25.000Z" itemprop="datePublished">2016-01-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/10/beginning/">开篇的流水账</a>
-    </h1>
-  
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>回头算算，从第一次有想写博客的念头开始，到现在可能已经过去了至少大半年了（QQ空间之类的就算了吧）。可能是我觉得我表达能力太差，再一个就是不停在写作平台上纠结，加上下半年工作确实繁重，这个任务也就拖到了今天……</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/10/beginning/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -356,8 +325,8 @@
 		fancybox: true,
 		mathjax: undefined,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
