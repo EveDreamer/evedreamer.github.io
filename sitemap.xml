@@ -1,0 +1,20 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://evedreamer.com/</loc>
+    <lastmod>2016/1/17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://evedreamer.com/2016/01/17/wechat-pay-with-jsapi-by-ruby-on-rails/</loc>
+    <lastmod>2016/1/17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://evedreamer.com/about/</loc>
+    <lastmod>2016/1/11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
