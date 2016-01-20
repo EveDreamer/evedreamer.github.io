@@ -12,7 +12,7 @@
 <meta property="og:url" content="evedreamer.com/2016/01/17/wechat-pay-with-jsapi-by-ruby-on-rails/index.html">
 <meta property="og:site_name" content="EveDreamer">
 <meta property="og:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！">
-<meta property="og:updated_time" content="2016-01-16T17:23:15.000Z">
+<meta property="og:updated_time" content="2016-01-20T07:53:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信公众号支付开发中的坑（Ruby on Rails示例）">
 <meta name="twitter:description" content="前不久产品同事让在我们的应用里实现微信的公众号支付功能，我接手了这个开发任务后马上着手实现。花了一天半的时间把按照微信公众号支付文档把相关代码实现了，本以为胜利在望，没想到后面支付调试花去了我整整一个多周……目前该功能已完成，就把整个过程中遇到的一些坑和需要注意的地方总结一下吧！">
@@ -250,6 +250,7 @@
 <p>最后再强调一下注意的地方：</p>
 <ul>
 <li>公众平台设置的支付目录，是目录，所以必须要以反斜杠<code>/</code>结尾</li>
+<li>跟上面一条有关系，假如你支付目录设定的是<code>http://example.com/orders/pay/</code>的话，而你实际发起支付的页面文件是<code>app/views/orders/pay.html.haml</code>的话，那你页面地址正常情况下就是<code>/orders/pay</code>，但是请注意，这样是会支付失败的，你必须让你的地址变为<code>/orders/pay/</code>才行，解决办法有人推荐在url后拼接一个<code>/</code>，不过rails路由里的get方法后可以增加一个option｀trailing_slash: true｀，即最终看起来类似<code>get &#39;pay&#39;, trailing_slash: true</code>，然后在所有使用get请求方式访问pay action后的页面地址都会自动在地址末尾加上<code>/</code>，问题解决</li>
 <li>如果你不是像我这样使用的sjr发起支付，那么就一定要注意，在进入发起支付页面前，至少要先访问另外一个页面假如叫a页面，在a页面放一条进入实际支付页面的链接，这样点过去之后才能够正常发起支付，否则假如你是在聊天窗口发了一条链接然后直接从连天窗口点进支付页面的话，这个支付十有八九是会出错的，这个暂时还不知道为什么，微信文档里也没提，我看很多人都是在这儿被坑了很久（我就是在这儿被坑了几乎一个周，之前把支付页面地址发在聊天窗口，直接点进去后准备支付，死活调试不通过，最后从另一个页面进入，马上搞定，真心无语……）</li>
 <li>调用统一下单发送的报文体，使用<code>Hash#to_xml</code>方法的话记得处理掉声明信息</li>
 <li>支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符</li>
